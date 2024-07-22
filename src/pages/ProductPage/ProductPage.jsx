@@ -1,26 +1,30 @@
 import { useParams } from "react-router-dom";
 import styles from "./ProductPage.module.scss";
 import { useEffect, useState } from "react";
-import { getItemById } from "../../services/test-service";
+import { getProductById } from "../../services/products-service";
 
 const ProductPage = () => {
 	const { id } = useParams();
-	const [item, setItem] = useState();
+	const [product, setProduct] = useState();
 
 	useEffect(() => {
 		if (id) {
-			getItemById(id).then(item => setItem(item));
+			getProductById(id).then(product => setProduct(product));
 		}
 	}, [id]);
 
 	return (
 		<>
-			{item && (
+			{product && (
 				<div>
-					<p>{item.name}</p>
-					<p>{item.description}</p>
-					<p>{item.color}</p>
-					<p>{item.qty}</p>
+					<p>{product.name}</p>
+					<p>{product.description}</p>
+					<p>{product.price}</p>
+					{product.variants?.map(variant => <div key={variant.style}> 
+						<p>{variant.style}</p>
+						<p>{variant.quantity}</p>
+						<p>{variant.favourite ? "Favourited" : "Not Favourited"}</p>
+					</div>)}
 				</div>
 			)}
 		</>

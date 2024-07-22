@@ -7,6 +7,7 @@ const ProductCard = ({ product }) => {
 			<div>
 				<h1>{product.name}</h1>
 				<h4>{product.description}</h4>
+				<p>${product.price}</p>
 			</div>
 		</Link>
 	);

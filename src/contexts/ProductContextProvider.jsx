@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getAllItems } from "../services/test-service";
+import { getAllProducts } from '../services/products-service';
 
 export const ProductContext = createContext(null);
 
@@ -7,7 +7,7 @@ const ProductContextProvider = ({ children }) => {
 	const [products, setProducts] = useState(null);
 
 	useEffect(() => {
-		getAllItems().then(data => setProducts(data));
+		getAllProducts().then(data => setProducts(data));
 	}, []);
 
 	return (
