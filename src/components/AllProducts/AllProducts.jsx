@@ -7,7 +7,7 @@ const AllProducts = () => {
 	const { products } = useContext(ProductContext);
 
 	return (
-		<main>
+		<main className={styles.productsContainer}>
 			{products?.map(product => (
 				<ProductCard
 					key={product.id}

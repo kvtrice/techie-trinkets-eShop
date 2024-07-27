@@ -1,0 +1,15 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+
+    &__title {
+        justify-self: center;
+        text-align: center;
+    }
+
+    &__cart {
+        justify-self: flex-end;
+    }
+}

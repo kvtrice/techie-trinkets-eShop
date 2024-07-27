@@ -24,6 +24,7 @@ const ProductPage = () => {
 						<p>{variant.style}</p>
 						<p>{variant.quantity}</p>
 						<p>{variant.favourite ? "Favourited" : "Not Favourited"}</p>
+						<img src={variant.image} />
 					</div>)}
 				</div>
 			)}
