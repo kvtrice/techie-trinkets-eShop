@@ -1,3 +1,6 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .card {
 	border: 1px solid black;
 	border-radius: 10px;
@@ -7,6 +10,11 @@
 	flex-direction: column;
 	overflow: hidden;
 	justify-content: space-between;
+	transition: v.$default-transition-duration;
+
+	&:hover {
+		@include m.popout-hover;
+	}
 
 	&__imgContainer {
 		width: 300px;
@@ -28,13 +36,17 @@
 		align-items: center;
 		padding: 1.5rem 1rem;
 		background-color: rgb(252, 190, 255);
-		color: black;
-		font-weight: 600;
+		font-weight: 500;
 		font-size: larger;
 
 		&__name,
 		&__price {
 			margin: 0;
+		}
+
+		&__price {
+			font-weight: bold;
+			font-size: large;
 		}
 	}
 }

@@ -1,15 +1,26 @@
+@use "../../styles/variables" as v;
+
 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem;
 
-    &__title {
-        justify-self: center;
-        text-align: center;
-    }
+	&__title {
+		justify-self: center;
+		text-align: center;
+	}
 
-    &__cart {
-        justify-self: flex-end;
-    }
+	&__cart {
+		justify-self: flex-end;
+
+		&__icon {
+			transition: v.$default-transition-duration;
+
+			&:hover {
+				transform: scale(1.2);
+				fill: pink;
+			}
+		}
+	}
 }
