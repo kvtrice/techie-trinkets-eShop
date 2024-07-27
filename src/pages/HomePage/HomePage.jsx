@@ -1,10 +1,12 @@
-import AllProducts from "../../components/AllProducts/AllProducts";
+import FeaturedProducts from "../../components/FeaturedProducts/FeaturedProducts";
+import Hero from "../../components/Hero/Hero";
 import styles from "./HomePage.module.scss";
 
 const HomePage = () => {
 	return (
-		<div>
-			<AllProducts />
+		<div className={styles.home}>
+			<Hero />
+			<FeaturedProducts />
 		</div>
 	);
 };

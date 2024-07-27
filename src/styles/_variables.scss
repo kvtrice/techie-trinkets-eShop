@@ -2,5 +2,17 @@
 
 $primary-font: "Bricolage Grotesque", sans-serif;
 $primary-text-color: #000000;
+$primary-bg-color: #f9f5e3;
 
+$palette-yellow: #f5e68d;
+$palette-pink: #ef798a;
+$palette-green: #b3ff77;
+
+$palette-gradient: linear-gradient(
+	to bottom right,
+	$palette-yellow 0%,
+	$palette-pink 100%
+);
+
+$default-border: 1px solid #000000;
 $default-transition-duration: 400ms;

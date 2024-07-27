@@ -1,0 +1,32 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
+.hero {
+	height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	&__heading {
+		font-size: 80px;
+		text-align: center;
+	}
+
+	&__btn {
+		font-size: large;
+		padding: 1rem;
+		border-radius: 10px;
+		border: v.$default-border;
+		cursor: pointer;
+		background-color: v.$primary-bg-color;
+		transition: v.$default-transition-duration;
+
+		&:hover {
+			@include m.popout-hover;
+			animation: backgroundColor 3s ease-in-out alternate infinite;
+		}
+	}
+}
+
+@include m.color-animation;

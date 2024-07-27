@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import ProductContextProvider from "./contexts/ProductContextProvider";
+import AllProductsPage from "./pages/AllProductsPage/AllProductsPage";
+import Footer from "./components/Footer/Footer";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
 	return (
@@ -17,6 +19,10 @@ function App() {
 							element={<HomePage />}
 						/>
 						<Route
+							path="/products"
+							element={<AllProductsPage />}
+						/>
+						<Route
 							path="/products/:id"
 							element={<ProductPage />}
 						/>
@@ -26,6 +32,7 @@ function App() {
 						/>
 					</Routes>
 				</ProductContextProvider>
+				<Footer />
 			</BrowserRouter>
 		</>
 	);

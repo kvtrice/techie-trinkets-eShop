@@ -6,12 +6,22 @@ const NavBar = () => {
 	return (
 		<div className={styles.nav}>
 			<div></div>
-			<NavLink
-				to="/"
-				className={styles.nav__title}
-			>
-				Techie Trinketts
-			</NavLink>
+			<div className={styles.nav__mainLinks}>
+				<NavLink
+					style={{ textDecoration: "none" }}
+					to="/"
+					className={styles.home}
+				>
+					Home
+				</NavLink>
+				<NavLink
+					style={{ textDecoration: "none" }}
+					to="/products"
+					className={styles.nav__products}
+				>
+					All Products
+				</NavLink>
+			</div>
 			<NavLink
 				to="/cart"
 				className={styles.nav__cart}
@@ -25,4 +35,5 @@ const NavBar = () => {
 		</div>
 	);
 };
+
 export default NavBar;

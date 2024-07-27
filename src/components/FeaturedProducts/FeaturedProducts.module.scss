@@ -1,0 +1,11 @@
+.featured {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 1rem 4rem 1rem;
+
+	&__heading {
+		text-align: center;
+	}
+}

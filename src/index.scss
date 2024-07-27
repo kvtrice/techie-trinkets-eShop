@@ -1,6 +1,9 @@
 @use "./styles/variables" as v;
 
 body {
+	margin: 0;
+	padding: 0;
 	font-family: v.$primary-font;
+	background-color: v.$primary-bg-color;
 	color: v.$primary-text-color;
 }
