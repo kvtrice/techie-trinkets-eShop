@@ -18,13 +18,15 @@ const NavBar = () => {
 
 	return (
 		<div className={styles.nav}>
-			<div className={styles.nav__logoContainer}>
-				<img
-					className={styles.nav__logo}
-					src="src/assets/logo.png"
-					alt="Techie Trinkets Logo"
-				/>
-			</div>
+			<NavLink to="/">
+				<div className={styles.nav__logoContainer}>
+					<img
+						className={styles.nav__logo}
+						src="/logo.png"
+						alt="Techie Trinkets Logo"
+					/>
+				</div>
+			</NavLink>
 			<div className={styles.nav__mainLinks}>
 				<NavLink
 					style={navStyles}

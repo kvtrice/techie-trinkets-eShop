@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import styles from "./ProductPage.module.scss";
 import { useEffect, useState } from "react";
 import { getProductById } from "../../services/products-service";
+import SingleProduct from "../../components/SingleProduct/SingleProduct";
 
 const ProductPage = () => {
 	const { id } = useParams();
@@ -14,21 +15,9 @@ const ProductPage = () => {
 	}, [id]);
 
 	return (
-		<>
-			{product && (
-				<div>
-					<p>{product.name}</p>
-					<p>{product.description}</p>
-					<p>{product.price}</p>
-					{product.variants?.map(variant => <div key={variant.style}> 
-						<p>{variant.style}</p>
-						<p>{variant.quantity}</p>
-						<p>{variant.favourite ? "Favourited" : "Not Favourited"}</p>
-						<img src={variant.image} />
-					</div>)}
-				</div>
-			)}
-		</>
+		<div className={styles.productPage}>
+			{product && <SingleProduct product={product} />}
+		</div>
 	);
 };
 export default ProductPage;
