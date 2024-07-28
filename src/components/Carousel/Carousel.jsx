@@ -35,11 +35,13 @@ const Carousel = () => {
 
 	return (
 		<div className={styles.carousel}>
-			<div className={styles.carousel__arrowContainer}>
+			<div
+				className={styles.carousel__arrowContainer}
+				onClick={prevItem}
+			>
 				<IoIosArrowBack
 					size={30}
 					className={styles.carousel__arrow}
-					onClick={prevItem}
 				/>
 			</div>
 			<div className={styles.carousel__items}>
@@ -50,11 +52,13 @@ const Carousel = () => {
 					/>
 				))}
 			</div>
-			<div className={styles.carousel__arrowContainer}>
+			<div
+				className={styles.carousel__arrowContainer}
+				onClick={nextItem}
+			>
 				<IoIosArrowForward
 					size={30}
 					className={styles.carousel__arrow}
-					onClick={nextItem}
 				/>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 @use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
 
 .nav {
 	display: flex;
@@ -7,15 +8,45 @@
 	padding: 1.5rem;
 	border-bottom: v.$default-border;
 
+	&__logoContainer {
+		width: 40px;
+		height: 40px;
+		overflow: hidden;
+		border: v.$default-border;
+		border-radius: 5px;
+		transition: v.$default-transition-duration;
+		cursor: pointer;
+
+		&:hover {
+			@include m.popout-hover;
+		}
+	}
+
+	&__logo {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+
 	&__mainLinks {
 		display: flex;
 		flex-direction: row;
 		gap: 1.5rem;
+		font-size: larger;
+		color: black;
 	}
 
-	&__home {
-		justify-self: center;
-		text-align: center;
+	&__home,
+	&__products {
+		transition: v.$default-transition-duration;
+		padding: 0.5rem;
+		border: 1px solid transparent;
+		border-radius: 5px;
+
+		&:hover {
+			border: v.$default-border;
+			@include m.popout-hover;
+		}
 	}
 
 	&__cart {
@@ -26,7 +57,7 @@
 
 			&:hover {
 				transform: scale(1.2);
-				fill: pink;
+				fill: v.$palette-pink;
 			}
 		}
 	}

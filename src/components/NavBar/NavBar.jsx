@@ -3,19 +3,38 @@ import { NavLink } from "react-router-dom";
 import { BsCartFill } from "react-icons/bs";
 
 const NavBar = () => {
+	const navStyles = ({ isActive }) =>
+		isActive
+			? {
+					color: "#000000",
+					textDecoration: "none",
+					border: "1px solid #000000",
+					backgroundColor: "#f0deaa",
+			  }
+			: {
+					color: "#000000",
+					textDecoration: "none",
+			  };
+
 	return (
 		<div className={styles.nav}>
-			<div></div>
+			<div className={styles.nav__logoContainer}>
+				<img
+					className={styles.nav__logo}
+					src="src/assets/logo.png"
+					alt="Techie Trinkets Logo"
+				/>
+			</div>
 			<div className={styles.nav__mainLinks}>
 				<NavLink
-					style={{ textDecoration: "none" }}
+					style={navStyles}
 					to="/"
-					className={styles.home}
+					className={styles.nav__home}
 				>
 					Home
 				</NavLink>
 				<NavLink
-					style={{ textDecoration: "none" }}
+					style={navStyles}
 					to="/products"
 					className={styles.nav__products}
 				>
