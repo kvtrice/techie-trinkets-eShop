@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AddToCart from "../AddToCart/AddToCart";
 import styles from "./SingleProduct.module.scss";
+import Favourite from "../Favourite/Favourite";
 
 const SingleProduct = ({ product }) => {
 	const [currentImage, setCurrentImage] = useState(
@@ -54,9 +55,19 @@ const SingleProduct = ({ product }) => {
 					</div>
 				</div>
 				<div className={styles.product__info__content}>
-					<h1 className={styles.product__info__content__heading}>
-						{product.name}
-					</h1>
+					<div className={styles.product__info__content__header}>
+						<h1
+							className={
+								styles.product__info__content__header__heading
+							}
+						>
+							{product.name}
+						</h1>
+						<Favourite
+							product={product}
+							currentStyle={currentStyle}
+						/>
+					</div>
 					<p className={styles.product__info__content__description}>
 						{product.description}
 					</p>

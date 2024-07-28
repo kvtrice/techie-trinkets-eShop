@@ -1,0 +1,12 @@
+@use "../../styles/variables" as v;
+
+.favourite {
+	cursor: pointer;
+	transition: v.$default-transition-duration;
+	padding: 0.2rem 0.5rem;
+
+	:hover {
+		transform: scale(1.02);
+	}
+
+}

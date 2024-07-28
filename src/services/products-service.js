@@ -1,5 +1,11 @@
 import { db } from "../config/firestore";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import {
+	collection,
+	getDocs,
+	doc,
+	getDoc,
+	updateDoc,
+} from "firebase/firestore";
 
 export const getAllProducts = async () => {
 	const collectionRef = collection(db, "products");
@@ -28,4 +34,21 @@ export const getProductById = async id => {
 		return "No products found!";
 	}
 	return data;
+};
+
+export const setProductFavouriteById = async (id, style, boolean) => {
+	const docRef = doc(db, "products", `${id}`);
+	const snapshot = await getDoc(docRef);
+
+	if (snapshot.exists()) {
+		const productData = snapshot.data();
+		const updatedVariant = productData.variants.map(variant => {
+			if (variant.style === style) {
+				return { ...variant, favourite: boolean };
+			}
+			return variant;
+		});
+
+		await updateDoc(docRef, { variants: updatedVariant });
+	}
 };
