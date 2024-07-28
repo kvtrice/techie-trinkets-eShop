@@ -6,6 +6,7 @@ import ProductContextProvider from "./contexts/ProductContextProvider";
 import AllProductsPage from "./pages/AllProductsPage/AllProductsPage";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
+import WishList from "./pages/WishList/WishList";
 
 function App() {
 	return (
@@ -25,6 +26,10 @@ function App() {
 						<Route
 							path="/products/:id"
 							element={<ProductPage />}
+						/>
+						<Route
+							path="/wishlist"
+							element={<WishList />}
 						/>
 						<Route
 							path="/cart"

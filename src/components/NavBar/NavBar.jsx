@@ -42,6 +42,13 @@ const NavBar = () => {
 				>
 					All Products
 				</NavLink>
+				<NavLink
+					style={navStyles}
+					to="/wishlist"
+					className={styles.nav__products}
+				>
+					Wish List
+				</NavLink>
 			</div>
 			<NavLink
 				to="/cart"
