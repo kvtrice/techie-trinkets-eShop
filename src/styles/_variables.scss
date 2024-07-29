@@ -16,3 +16,9 @@ $palette-gradient: linear-gradient(
 
 $default-border: 1px solid #000000;
 $default-transition-duration: 400ms;
+
+$footer-height: 200px;
+$navbar-height: 40px;
+$default-page-height: calc(
+	100vh - $footer-height - 8rem - $navbar-height - 3rem
+);

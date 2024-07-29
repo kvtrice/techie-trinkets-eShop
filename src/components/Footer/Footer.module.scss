@@ -1,6 +1,7 @@
 @use "../../styles/variables" as v;
 
 .footer {
+	height: v.$footer-height;
 	border-top: v.$default-border;
 	padding: 4rem 2rem;
 	background-color: v.$palette-pink;

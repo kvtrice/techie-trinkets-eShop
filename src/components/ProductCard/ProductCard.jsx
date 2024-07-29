@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
 				<div className={styles.card__imgContainer}>
 					<img
 						className={styles.card__imgContainer__img}
-						src={product.variants[0].image}
+						src={product?.variants[0]?.image}
 						alt={product.name}
 					/>
 				</div>

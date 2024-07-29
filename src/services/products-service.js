@@ -36,14 +36,14 @@ export const getProductById = async id => {
 	return data;
 };
 
-export const setProductFavouriteById = async (id, style, boolean) => {
+export const setProductFavouriteById = async (id, currentVariant, boolean) => {
 	const docRef = doc(db, "products", `${id}`);
 	const snapshot = await getDoc(docRef);
 
 	if (snapshot.exists()) {
 		const productData = snapshot.data();
 		const updatedVariant = productData.variants.map(variant => {
-			if (variant.style === style) {
+			if (variant.style === currentVariant.style) {
 				return { ...variant, favourite: boolean };
 			}
 			return variant;

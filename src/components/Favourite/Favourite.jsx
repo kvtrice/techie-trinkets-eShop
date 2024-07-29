@@ -3,21 +3,23 @@ import styles from "./Favourite.module.scss";
 import { FiHeart } from "react-icons/fi";
 import { setProductFavouriteById } from "../../services/products-service";
 
-const Favourite = ({ product, currentStyle }) => {
+const Favourite = ({ product, currentVariant }) => {
 	const [isSelected, setIsSelected] = useState(false);
 
 	useEffect(() => {
-		const currentVariant = product.variants.find(
-			variant => variant.style === currentStyle
-		);
 		if (currentVariant) {
 			setIsSelected(currentVariant.favourite);
 		}
-	}, [currentStyle, product]);
+	}, [currentVariant, product]);
 
 	const handleClick = async () => {
-		setIsSelected(!isSelected);
-		await setProductFavouriteById(product.id, currentStyle, !isSelected);
+		const newFavouriteState = !isSelected;
+		setIsSelected(newFavouriteState);
+		await setProductFavouriteById(
+			product.id,
+			currentVariant,
+			newFavouriteState
+		);
 	};
 
 	return (

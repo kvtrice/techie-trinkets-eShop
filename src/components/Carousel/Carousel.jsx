@@ -9,7 +9,7 @@ const Carousel = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const featuredProducts = products?.filter(product =>
-		product.variants?.some(variant => variant.featured)
+		product?.variants?.some(variant => variant.featured)
 	);
 
 	const itemsPerPage = 3;

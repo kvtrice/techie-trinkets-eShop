@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddToCart from "../AddToCart/AddToCart";
 import styles from "./SingleProduct.module.scss";
 import Favourite from "../Favourite/Favourite";
@@ -7,15 +7,19 @@ const SingleProduct = ({ product }) => {
 	const [currentImage, setCurrentImage] = useState(
 		product?.variants[0]?.image
 	);
-	const [currentStyle, setCurrentStyle] = useState();
+	const [currentStyle, setCurrentStyle] = useState(
+		product?.variants[0]?.style
+	);
+	const [currentVariant, setCurrentVariant] = useState(product.variants[0]);
 
 	const handleStyleChange = style => {
 		setCurrentStyle(style);
-		const variant = product.variants.find(
+		const variant = product?.variants?.find(
 			variant => variant.style === style
 		);
 		if (variant) {
 			setCurrentImage(variant.image);
+			setCurrentVariant(variant);
 		}
 	};
 
@@ -36,7 +40,7 @@ const SingleProduct = ({ product }) => {
 							styles.product__info__images__variantsContainer
 						}
 					>
-						{product.variants?.map(variant => (
+						{product?.variants?.map(variant => (
 							<div
 								className={
 									styles.product__info__images__variant
@@ -65,7 +69,7 @@ const SingleProduct = ({ product }) => {
 						</h1>
 						<Favourite
 							product={product}
-							currentStyle={currentStyle}
+							currentVariant={currentVariant}
 						/>
 					</div>
 					<p className={styles.product__info__content__description}>
@@ -96,7 +100,10 @@ const SingleProduct = ({ product }) => {
 							))}
 						</select>
 					</div>
-					<AddToCart />
+					<AddToCart
+						product={product}
+						currentVariant={currentVariant}
+					/>
 				</div>
 			</div>
 		</div>

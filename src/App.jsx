@@ -12,32 +12,32 @@ function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<NavBar />
-				<ProductContextProvider>
-					<Routes>
-						<Route
-							path="/"
-							element={<HomePage />}
-						/>
-						<Route
-							path="/products"
-							element={<AllProductsPage />}
-						/>
-						<Route
-							path="/products/:id"
-							element={<ProductPage />}
-						/>
-						<Route
-							path="/wishlist"
-							element={<WishList />}
-						/>
-						<Route
-							path="/cart"
-							element={<ShoppingCart />}
-						/>
-					</Routes>
-				</ProductContextProvider>
-				<Footer />
+					<NavBar />
+					<ProductContextProvider>
+						<Routes>
+							<Route
+								path="/"
+								element={<HomePage />}
+							/>
+							<Route
+								path="/products"
+								element={<AllProductsPage />}
+							/>
+							<Route
+								path="/products/:id"
+								element={<ProductPage />}
+							/>
+							<Route
+								path="/wishlist"
+								element={<WishList />}
+							/>
+							<Route
+								path="/cart"
+								element={<ShoppingCart />}
+							/>
+						</Routes>
+					</ProductContextProvider>
+					<Footer />
 			</BrowserRouter>
 		</>
 	);

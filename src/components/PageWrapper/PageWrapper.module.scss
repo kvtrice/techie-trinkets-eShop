@@ -1,0 +1,8 @@
+@use "../../styles/variables" as v;
+
+.wrapper {
+	margin: 0 auto;
+	max-width: 1400px;
+	padding: 5rem 2rem;
+	min-height: calc(v.$default-page-height - 5rem - 4rem - 1rem);
+}
