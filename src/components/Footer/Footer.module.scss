@@ -2,6 +2,24 @@
 
 .footer {
 	border-top: v.$default-border;
-	height: 200px;
+	padding: 4rem 2rem;
 	background-color: v.$palette-pink;
+
+	&__main {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+
+		&__right {
+			font-size: large;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 0.2rem;
+		}
+	}
+
+	&__copyright {
+		margin-top: 4rem;
+	}
 }
