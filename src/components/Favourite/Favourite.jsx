@@ -24,6 +24,7 @@ const Favourite = ({ product, currentVariant }) => {
 			}
 		});
 
+		// Cleanup
 		return () => unsub();
 	}, [currentVariant, product]);
 

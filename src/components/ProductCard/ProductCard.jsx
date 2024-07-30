@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, variantImage = null }) => {
 	return (
 		<Link
 			style={{ textDecoration: "none" }}
@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
 				<div className={styles.card__imgContainer}>
 					<img
 						className={styles.card__imgContainer__img}
-						src={product?.variants[0]?.image}
+						src={variantImage ?? product?.variants[0]?.image}
 						alt={product.name}
 					/>
 				</div>
