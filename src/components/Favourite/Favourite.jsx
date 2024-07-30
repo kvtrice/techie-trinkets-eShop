@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
 import styles from "./Favourite.module.scss";
 import { FiHeart } from "react-icons/fi";
-import { setProductFavouriteById } from "../../services/products-service";
+import {
+	setProductFavouriteById,
+	subscribeToFavourite,
+} from "../../services/products-service";
 
 const Favourite = ({ product, currentVariant }) => {
-	const [isSelected, setIsSelected] = useState(false);
+	const [isSelected, setIsSelected] = useState();
 
 	useEffect(() => {
 		if (currentVariant) {
 			setIsSelected(currentVariant.favourite);
 		}
+
+		const unsub = subscribeToFavourite(product.id, updatedProduct => {
+			const updatedVariant = updatedProduct.variants.find(
+				variant => variant.style === currentVariant.style
+			);
+
+			if (updatedVariant) {
+				setIsSelected(updatedVariant.favourite);
+			}
+		});
+
+		return () => unsub();
 	}, [currentVariant, product]);
 
 	const handleClick = async () => {

@@ -5,6 +5,7 @@ import {
 	doc,
 	getDoc,
 	updateDoc,
+	onSnapshot,
 } from "firebase/firestore";
 
 export const getAllProducts = async () => {
@@ -51,4 +52,19 @@ export const setProductFavouriteById = async (id, currentVariant, boolean) => {
 
 		await updateDoc(docRef, { variants: updatedVariant });
 	}
+};
+
+export const subscribeToFavourite = (id, callback) => {
+	const docRef = doc(db, "products", `${id}`);
+	const unsub = onSnapshot(docRef, doc => {
+		if (doc.exists()) {
+			const productData = {
+				id: doc.id,
+				...doc.data(),
+			};
+			callback(productData);
+		}
+	});
+
+	return unsub;
 };
