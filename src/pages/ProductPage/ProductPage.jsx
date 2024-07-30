@@ -18,9 +18,10 @@ const ProductPage = () => {
 	return (
 		<PageWrapper>
 			<div className={styles.productPage}>
-				{product && <SingleProduct product={product} />}
+				{product && <SingleProduct product={product} setProduct={setProduct}/>}
 			</div>
 		</PageWrapper>
 	);
 };
+
 export default ProductPage;

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
-import ProductContextProvider from "./contexts/ProductContextProvider";
+import AllProductsContextProvider from "./contexts/AllProductsContextProvider";
 import AllProductsPage from "./pages/AllProductsPage/AllProductsPage";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
@@ -12,32 +12,32 @@ function App() {
 	return (
 		<>
 			<BrowserRouter>
-					<NavBar />
-					<ProductContextProvider>
-						<Routes>
-							<Route
-								path="/"
-								element={<HomePage />}
-							/>
-							<Route
-								path="/products"
-								element={<AllProductsPage />}
-							/>
-							<Route
-								path="/products/:id"
-								element={<ProductPage />}
-							/>
-							<Route
-								path="/wishlist"
-								element={<WishList />}
-							/>
-							<Route
-								path="/cart"
-								element={<ShoppingCart />}
-							/>
-						</Routes>
-					</ProductContextProvider>
-					<Footer />
+				<NavBar />
+				<AllProductsContextProvider>
+					<Routes>
+						<Route
+							path="/"
+							element={<HomePage />}
+						/>
+						<Route
+							path="/products"
+							element={<AllProductsPage />}
+						/>
+						<Route
+							path="/products/:id"
+							element={<ProductPage />}
+						/>
+						<Route
+							path="/wishlist"
+							element={<WishList />}
+						/>
+						<Route
+							path="/cart"
+							element={<ShoppingCart />}
+						/>
+					</Routes>
+				</AllProductsContextProvider>
+				<Footer />
 			</BrowserRouter>
 		</>
 	);

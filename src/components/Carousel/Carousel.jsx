@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import styles from "./Carousel.module.scss";
-import { ProductContext } from "../../contexts/ProductContextProvider";
+import { AllProductsContext } from "../../contexts/AllProductsContextProvider";
 import ProductCard from "../ProductCard/ProductCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const Carousel = () => {
-	const { products } = useContext(ProductContext);
+	const { products } = useContext(AllProductsContext);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const featuredProducts = products?.filter(product =>
@@ -30,8 +30,6 @@ const Carousel = () => {
 			currentProducts.push(featuredProducts[productIndex]);
 		}
 	}
-
-	console.log(currentProducts);
 
 	return (
 		<div className={styles.carousel}>

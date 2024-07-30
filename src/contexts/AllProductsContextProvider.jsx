@@ -1,9 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { getAllProducts } from "../services/products-service";
 
-export const ProductContext = createContext(null);
+export const AllProductsContext = createContext(null);
 
-const ProductContextProvider = ({ children }) => {
+const AllProductsContextProvider = ({ children }) => {
 	const [products, setProducts] = useState(null);
 
 	useEffect(() => {
@@ -11,10 +11,10 @@ const ProductContextProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<ProductContext.Provider value={{ products }}>
+		<AllProductsContext.Provider value={{ products }}>
 			{children}
-		</ProductContext.Provider>
+		</AllProductsContext.Provider>
 	);
 };
 
-export default ProductContextProvider;
+export default AllProductsContextProvider;

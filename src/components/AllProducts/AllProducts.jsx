@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { ProductContext } from "../../contexts/ProductContextProvider";
+import { AllProductsContext } from "../../contexts/AllProductsContextProvider";
 import styles from "./AllProducts.module.scss";
 import ProductCard from "../ProductCard/ProductCard";
 
 const AllProducts = () => {
-	const { products } = useContext(ProductContext);
+	const { products } = useContext(AllProductsContext);
 
 	return (
 		<main className={styles.productsContainer}>

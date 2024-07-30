@@ -11,8 +11,6 @@ const AddToCart = ({ product, currentVariant }) => {
 		}
 	}, [product, currentVariant]);
 
-	console.log(maxQuantity);
-
 	const handleSubmit = () => {};
 
 	const onSubmit = e => {
