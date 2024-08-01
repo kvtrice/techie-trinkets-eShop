@@ -28,4 +28,5 @@ const CartItem = ({ cartItem, onRemove }) => {
 		</div>
 	);
 };
+
 export default CartItem;

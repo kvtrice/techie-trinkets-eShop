@@ -69,6 +69,21 @@ export const subscribeToFavourite = (id, callback) => {
 	return unsub;
 };
 
+export const subscribeToQuantityUpdates = (id, callback) => {
+	const docRef = doc(db, "products", `${id}`);
+	const unsub = onSnapshot(docRef, doc => {
+		if (doc.exists()) {
+			const productData = {
+				id: doc.id,
+				...doc.data(),
+			};
+			callback(productData);
+		}
+	});
+
+	return unsub;
+};
+
 export const updateProductQtyById = async (id, currentVariant, qtyChange) => {
 	const docRef = doc(db, "products", `${id}`);
 	const snapshot = await getDoc(docRef);

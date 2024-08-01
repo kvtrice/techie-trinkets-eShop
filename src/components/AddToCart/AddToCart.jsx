@@ -10,17 +10,18 @@ const AddToCart = ({
 	itemCount,
 	maxQuantity,
 }) => {
-	// const [itemCount, setItemCount] = useState(0);
-	// const [maxQuantity, setMaxQuantity] = useState();
 	const [addedToCart, setAddedToCart] = useState(false);
 	const [error, setError] = useState("");
 
-	// useEffect(() => {
-	// 	if (currentVariant) {
-	// 		setMaxQuantity(currentVariant.quantity);
-	// 		setItemCount(0);
-	// 	}
-	// }, [product, currentVariant]);
+	useEffect(() => {
+		if (maxQuantity === 0) {
+			setError("This item is currently out of stock");
+		} else if (maxQuantity === 1) {
+			setError("Hurry, only 1 left!");
+		} else {
+			setError("");
+		}
+	}, [maxQuantity, currentVariant]);
 
 	useEffect(() => {
 		if (addedToCart) {
@@ -87,7 +88,7 @@ const AddToCart = ({
 			setMaxQuantity(newMaxQuantity);
 			setItemCount(0);
 			setAddedToCart(true);
-		} else {
+		} else if (itemCount === 0 && maxQuantity !== 0) {
 			setError("Please add at least one item");
 		}
 	};
@@ -135,4 +136,5 @@ const AddToCart = ({
 		</form>
 	);
 };
+
 export default AddToCart;

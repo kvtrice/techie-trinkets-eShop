@@ -3,18 +3,12 @@ import AddToCart from "../AddToCart/AddToCart";
 import styles from "./SingleProduct.module.scss";
 import Favourite from "../Favourite/Favourite";
 import { findVariantByStyle } from "../../utils/variant-utils";
+import { subscribeToQuantityUpdates } from "../../services/products-service";
 
 const SingleProduct = ({ product, initialVariant }) => {
 	const [currentVariant, setCurrentVariant] = useState(initialVariant);
 	const [maxQuantity, setMaxQuantity] = useState(currentVariant.quantity);
 	const [itemCount, setItemCount] = useState(0);
-
-	const handleVariantChange = style => {
-		const newVariant = findVariantByStyle(product, style);
-		if (newVariant) {
-			setCurrentVariant(newVariant);
-		}
-	};
 
 	useEffect(() => {
 		if (currentVariant) {
@@ -22,6 +16,28 @@ const SingleProduct = ({ product, initialVariant }) => {
 			setItemCount(0);
 		}
 	}, [product, currentVariant]);
+
+	useEffect(() => {
+		const unsub = subscribeToQuantityUpdates(product.id, updatedProduct => {
+			const updatedVariant = findVariantByStyle(
+				updatedProduct,
+				currentVariant.style
+			);
+
+			if (updatedVariant) {
+				setMaxQuantity(updatedVariant.quantity);
+			}
+		});
+
+		return () => unsub();
+	}, [product, currentVariant]);
+
+	const handleVariantChange = style => {
+		const newVariant = findVariantByStyle(product, style);
+		if (newVariant) {
+			setCurrentVariant(newVariant);
+		}
+	};
 
 	return (
 		<>
