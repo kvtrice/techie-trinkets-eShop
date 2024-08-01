@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./Favourite.module.scss";
 import { FiHeart } from "react-icons/fi";
 import {
 	setProductFavouriteById,
 	subscribeToFavourite,
 } from "../../services/products-service";
+import { VariantContext } from "../../contexts/VariantContextProvider";
+import {
+	findVariantByStyle,
+	updateFavourites,
+} from "../../utils/variant-utils";
 
 const Favourite = ({ product, currentVariant }) => {
-	const [isSelected, setIsSelected] = useState();
+	const [isSelected, setIsSelected] = useState(currentVariant.favourite);
+	const { favourites, setFavourites } = useContext(VariantContext);
 
 	useEffect(() => {
 		if (currentVariant) {
@@ -15,12 +21,21 @@ const Favourite = ({ product, currentVariant }) => {
 		}
 
 		const unsub = subscribeToFavourite(product.id, updatedProduct => {
-			const updatedVariant = updatedProduct.variants.find(
-				variant => variant.style === currentVariant.style
+			const updatedVariant = findVariantByStyle(
+				updatedProduct,
+				currentVariant.style
 			);
 
 			if (updatedVariant) {
 				setIsSelected(updatedVariant.favourite);
+				setFavourites(favourites =>
+					updateFavourites(
+						favourites,
+						product,
+						updatedVariant.style,
+						updatedVariant.favourite
+					)
+				);
 			}
 		});
 

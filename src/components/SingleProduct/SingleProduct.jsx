@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AddToCart from "../AddToCart/AddToCart";
 import styles from "./SingleProduct.module.scss";
 import Favourite from "../Favourite/Favourite";
+import { findVariantByStyle } from "../../utils/variant-utils";
 
 const SingleProduct = ({ product }) => {
 	const [currentVariant, setCurrentVariant] = useState(product.variants[0]);
 
 	const handleVariantChange = style => {
-		const newVariant = product?.variants?.find(
-			variant => variant.style === style
-		);
+		const newVariant = findVariantByStyle(product, style);
 		if (newVariant) {
 			setCurrentVariant(newVariant);
 		}

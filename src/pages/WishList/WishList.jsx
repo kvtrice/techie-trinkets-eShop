@@ -1,33 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import styles from "./WishList.module.scss";
-import { AllProductsContext } from "../../contexts/AllProductsContextProvider";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { VariantContext } from "../../contexts/VariantContextProvider";
 
 const WishList = () => {
-	const { products } = useContext(AllProductsContext);
-
-	const favouritedVariants = products?.reduce((acc, product) => {
-		const favVariants = product.variants
-			.filter(variant => variant.favourite)
-			.map(variant => ({
-				...variant,
-				product: product,
-			}));
-
-		return [...acc, ...favVariants];
-	}, []);
-
-	console.log(favouritedVariants);
+	const { favourites } = useContext(VariantContext);
 
 	return (
 		<PageWrapper>
+			<h1 className={styles.wishList__heading}>My Wishlist</h1>
 			<div className={styles.wishList}>
-				{favouritedVariants &&
-					favouritedVariants.map(variant => (
+				{favourites &&
+					favourites.map(variant => (
 						<ProductCard
+							key={variant.id}
 							product={variant.product}
-							variantImage={variant.image}
+							variant={variant}
 						/>
 					))}
 			</div>
