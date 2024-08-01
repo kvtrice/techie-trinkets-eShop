@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import styles from "./AddToCart.module.scss";
+import { updateProductQtyById } from "../../services/products-service";
 
-const AddToCart = ({ product, currentVariant }) => {
-	const [itemCount, setItemCount] = useState(0);
-	const [maxQuantity, setMaxQuantity] = useState();
+const AddToCart = ({
+	product,
+	currentVariant,
+	setMaxQuantity,
+	setItemCount,
+	itemCount,
+	maxQuantity,
+}) => {
+	// const [itemCount, setItemCount] = useState(0);
+	// const [maxQuantity, setMaxQuantity] = useState();
 	const [addedToCart, setAddedToCart] = useState(false);
 	const [error, setError] = useState("");
 
-	useEffect(() => {
-		if (currentVariant) {
-			setMaxQuantity(currentVariant.quantity);
-			setItemCount(0);
-		}
-	}, [product, currentVariant]);
+	// useEffect(() => {
+	// 	if (currentVariant) {
+	// 		setMaxQuantity(currentVariant.quantity);
+	// 		setItemCount(0);
+	// 	}
+	// }, [product, currentVariant]);
 
 	useEffect(() => {
 		if (addedToCart) {
@@ -41,7 +49,7 @@ const AddToCart = ({ product, currentVariant }) => {
 		setItemCount(newItemCount);
 	};
 
-	const handleCart = () => {
+	const handleCart = async () => {
 		if (itemCount > 0) {
 			const newCartItem = {
 				id: product.id,
@@ -69,6 +77,14 @@ const AddToCart = ({ product, currentVariant }) => {
 				localStorage.setItem("cart", JSON.stringify(updatedCartItems));
 			}
 
+			await updateProductQtyById(
+				product.id,
+				currentVariant,
+				0 - newCartItem.quantity
+			);
+
+			const newMaxQuantity = maxQuantity - newCartItem.quantity;
+			setMaxQuantity(newMaxQuantity);
 			setItemCount(0);
 			setAddedToCart(true);
 		} else {

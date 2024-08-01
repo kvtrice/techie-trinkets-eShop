@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddToCart from "../AddToCart/AddToCart";
 import styles from "./SingleProduct.module.scss";
 import Favourite from "../Favourite/Favourite";
@@ -6,6 +6,8 @@ import { findVariantByStyle } from "../../utils/variant-utils";
 
 const SingleProduct = ({ product, initialVariant }) => {
 	const [currentVariant, setCurrentVariant] = useState(initialVariant);
+	const [maxQuantity, setMaxQuantity] = useState(currentVariant.quantity);
+	const [itemCount, setItemCount] = useState(0);
 
 	const handleVariantChange = style => {
 		const newVariant = findVariantByStyle(product, style);
@@ -13,6 +15,13 @@ const SingleProduct = ({ product, initialVariant }) => {
 			setCurrentVariant(newVariant);
 		}
 	};
+
+	useEffect(() => {
+		if (currentVariant) {
+			setMaxQuantity(currentVariant.quantity);
+			setItemCount(0);
+		}
+	}, [product, currentVariant]);
 
 	return (
 		<>
@@ -102,10 +111,15 @@ const SingleProduct = ({ product, initialVariant }) => {
 									</option>
 								))}
 							</select>
+							<small>In stock: {maxQuantity}</small>
 						</div>
 						<AddToCart
+							setMaxQuantity={setMaxQuantity}
+							setItemCount={setItemCount}
 							product={product}
 							currentVariant={currentVariant}
+							itemCount={itemCount}
+							maxQuantity={maxQuantity}
 						/>
 					</div>
 				</div>

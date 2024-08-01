@@ -68,3 +68,20 @@ export const subscribeToFavourite = (id, callback) => {
 
 	return unsub;
 };
+
+export const updateProductQtyById = async (id, currentVariant, qtyChange) => {
+	const docRef = doc(db, "products", `${id}`);
+	const snapshot = await getDoc(docRef);
+
+	if (snapshot.exists()) {
+		const productData = snapshot.data();
+		const updatedVariant = productData.variants.map(variant => {
+			if (variant.style === currentVariant.style) {
+				return { ...variant, quantity: variant.quantity + qtyChange };
+			}
+			return variant;
+		});
+
+		await updateDoc(docRef, { variants: updatedVariant });
+	}
+};

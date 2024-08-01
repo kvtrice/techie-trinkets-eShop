@@ -1,6 +1,12 @@
+import { updateProductQtyById } from "../../services/products-service";
 import styles from "./CartItem.module.scss";
 
 const CartItem = ({ cartItem, onRemove }) => {
+	const handleRemoveCartItem = async () => {
+		await updateProductQtyById(cartItem.id, cartItem, cartItem.quantity);
+		onRemove(cartItem);
+	};
+
 	return (
 		<div className={styles.cartItem}>
 			<img
@@ -15,7 +21,7 @@ const CartItem = ({ cartItem, onRemove }) => {
 			<p>${cartItem.price * cartItem.quantity}</p>
 			<button
 				className={styles.cartItem__remove}
-				onClick={() => onRemove(cartItem)}
+				onClick={handleRemoveCartItem}
 			>
 				Remove from cart
 			</button>
