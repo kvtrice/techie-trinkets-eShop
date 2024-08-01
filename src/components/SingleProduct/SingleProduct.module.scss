@@ -87,6 +87,12 @@
 			&__price {
 				font-size: 25px;
 			}
+
+			&__style {
+				padding: 0.5rem;
+				border: v.$default-border;
+				border-radius: 5px;
+			}
 		}
 	}
 }

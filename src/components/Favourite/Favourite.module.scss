@@ -4,8 +4,19 @@
 	cursor: pointer;
 	transition: v.$default-transition-duration;
 	padding: 0.2rem 0.5rem;
+	overflow: visible;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-	:hover {
-		transform: scale(1.1);
+	&__icon {
+		height: 30px;
+		width: 30px;
+		overflow: visible;
+
+		:hover {
+			transform: scale(1.1);
+			transition: v.$default-transition-duration;
+		}
 	}
 }

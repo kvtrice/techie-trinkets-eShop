@@ -60,7 +60,6 @@ const Favourite = ({ product, currentVariant }) => {
 		>
 			<FiHeart
 				className={styles.favourite__icon}
-				size={30}
 				fill={isSelected ? "#eaa39e" : "#f9f5e3"}
 				color={isSelected ? "#eaa39e" : ""}
 			/>

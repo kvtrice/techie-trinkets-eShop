@@ -8,6 +8,7 @@ const AddToCart = ({ product, currentVariant }) => {
 	useEffect(() => {
 		if (currentVariant) {
 			setMaxQuantity(currentVariant.quantity);
+			setItemCount(0);
 		}
 	}, [product, currentVariant]);
 
@@ -27,7 +28,7 @@ const AddToCart = ({ product, currentVariant }) => {
 				<button
 					className={styles.form__decrease}
 					onClick={() => setItemCount(itemCount - 1)}
-					disabled={itemCount === 0}
+					disabled={itemCount === 0 || itemCount === ""}
 				>
 					-
 				</button>

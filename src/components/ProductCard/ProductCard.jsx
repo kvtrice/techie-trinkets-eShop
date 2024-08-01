@@ -18,11 +18,6 @@ const ProductCard = ({ product, variant = null }) => {
 						alt={product.name}
 					/>
 				</div>
-			</Link>
-			<Link
-				style={{ textDecoration: "none" }}
-				to={`/products/${product.id}`}
-			>
 				<div className={styles.card__info}>
 					<div className={styles.card__infoContainer}>
 						<p className={styles.card__info__name}>

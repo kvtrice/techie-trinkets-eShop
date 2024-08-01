@@ -1,3 +1,6 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
 .wishList {
 	display: flex;
 	flex-direction: row;
@@ -9,4 +12,36 @@
 		text-align: center;
 		padding-bottom: 2rem;
 	}
+
+	&__noProducts {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+
+		&__text {
+			font-size: larger;
+			text-align: center;
+			font-weight: bolder;
+		}
+
+		&__btn {
+			margin: 2rem;
+			font-size: large;
+			padding: 1rem;
+			border-radius: 10px;
+			border: v.$default-border;
+			cursor: pointer;
+			background-color: v.$palette-yellow;
+			transition: v.$default-transition-duration;
+
+			&:hover {
+				@include m.popout-hover;
+				animation: backgroundColor 3s ease-in-out alternate infinite;
+			}
+		}
+	}
 }
+
+@include m.color-animation;
