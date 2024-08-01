@@ -17,4 +17,5 @@ const AllProducts = () => {
 		</main>
 	);
 };
+
 export default AllProducts;

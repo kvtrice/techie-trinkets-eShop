@@ -26,7 +26,7 @@ function App() {
 								element={<AllProductsPage />}
 							/>
 							<Route
-								path="/products/:id"
+								path="/products/:id/:variantId?"
 								element={<ProductPage />}
 							/>
 							<Route

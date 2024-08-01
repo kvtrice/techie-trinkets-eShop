@@ -10,12 +10,15 @@ const WishList = () => {
 
 	return (
 		<PageWrapper>
-			<h1 className={styles.wishList__heading}>My Wishlist</h1>
+			{favourites?.length > 0 && (
+				<h1 className={styles.wishList__heading}>My Wishlist</h1>
+			)}
 			<div className={styles.wishList}>
 				{!favourites?.length && (
 					<div className={styles.wishList__noProducts}>
 						<p className={styles.wishList__noProducts__text}>
-							There are no products in your wish list yet, let's add some!
+							There are no products in your wish list yet, let's
+							add some!
 						</p>
 						<Link to="/products">
 							<button

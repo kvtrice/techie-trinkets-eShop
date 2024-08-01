@@ -7,7 +7,11 @@ const ProductCard = ({ product, variant = null }) => {
 		<div className={styles.card}>
 			<Link
 				style={{ textDecoration: "none" }}
-				to={`/products/${product.id}`}
+				to={
+					variant
+						? `/products/${product.id}/${variant.id}`
+						: `/products/${product.id}`
+				}
 			>
 				<div className={styles.card__imgContainer}>
 					<img

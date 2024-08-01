@@ -4,21 +4,39 @@ import { useEffect, useState } from "react";
 import { getProductById } from "../../services/products-service";
 import SingleProduct from "../../components/SingleProduct/SingleProduct";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import { findVariantByStyle } from "../../utils/variant-utils";
 
 const ProductPage = () => {
-	const { id } = useParams();
+	const { id, variantId } = useParams();
 	const [product, setProduct] = useState();
+	const [initialVariant, setInitialVariant] = useState();
 
 	useEffect(() => {
 		if (id) {
-			getProductById(id).then(product => setProduct(product));
+			getProductById(id).then(product => {
+				setProduct(product);
+
+				if (variantId) {
+					const [productId, variantStyle] = variantId.split("-");
+					const variant = findVariantByStyle(product, variantStyle);
+					setInitialVariant(variant);
+				} else {
+					setInitialVariant(product.variants[0]);
+				}
+			});
 		}
 	}, [id]);
 
 	return (
 		<PageWrapper>
 			<div className={styles.productPage}>
-				{product && <SingleProduct product={product} setProduct={setProduct}/>}
+				{product && (
+					<SingleProduct
+						product={product}
+						setProduct={setProduct}
+						initialVariant={initialVariant}
+					/>
+				)}
 			</div>
 		</PageWrapper>
 	);

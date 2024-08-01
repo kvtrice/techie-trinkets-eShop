@@ -4,8 +4,8 @@ import styles from "./SingleProduct.module.scss";
 import Favourite from "../Favourite/Favourite";
 import { findVariantByStyle } from "../../utils/variant-utils";
 
-const SingleProduct = ({ product }) => {
-	const [currentVariant, setCurrentVariant] = useState(product.variants[0]);
+const SingleProduct = ({ product, initialVariant }) => {
+	const [currentVariant, setCurrentVariant] = useState(initialVariant);
 
 	const handleVariantChange = style => {
 		const newVariant = findVariantByStyle(product, style);
