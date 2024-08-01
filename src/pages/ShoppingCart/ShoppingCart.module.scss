@@ -1,0 +1,18 @@
+.shoppingCart {
+	&__heading {
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+
+	&__total {
+		padding-top: 1rem;
+		text-align: right;
+		padding-right: 1.5rem;
+	}
+
+	&__noItems {
+		text-align: center;
+		font-size: 24px;
+		font-weight: 500;
+	}
+}

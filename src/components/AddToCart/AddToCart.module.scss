@@ -64,4 +64,8 @@
 			@include m.popout-hover;
 		}
 	}
+
+	&__error {
+		color: red;
+	}
 }

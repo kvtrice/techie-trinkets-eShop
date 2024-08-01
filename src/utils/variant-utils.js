@@ -32,7 +32,7 @@ export const updateFavourites = (
 		}
 	} else {
 		// Otherwise remove it from favourites
-		return currentFavourites.filter(variant => variant.id !== variantId);
+		return currentFavourites?.filter(variant => variant.id !== variantId);
 	}
 
 	return currentFavourites;

@@ -1,0 +1,22 @@
+@use "../../styles/variables" as v;
+@use "../../styles/mixins" as m;
+
+.cartItem {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	align-items: center;
+	gap: 1rem;
+
+	&__img {
+		width: 60px;
+		border-radius: 5px;
+		border: v.$default-border;
+	}
+
+	&__remove {
+		cursor: pointer;
+		border: none;
+		background-color: v.$primary-bg-color;
+		text-decoration: underline;
+	}
+}
