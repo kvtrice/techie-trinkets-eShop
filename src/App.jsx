@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
 import WishList from "./pages/WishList/WishList";
 import VariantContextProvider from "./contexts/VariantContextProvider";
+import CartContextProvider from "./contexts/CartContextProvider";
 
 function App() {
 	return (
@@ -16,28 +17,30 @@ function App() {
 				<NavBar />
 				<AllProductsContextProvider>
 					<VariantContextProvider>
-						<Routes>
-							<Route
-								path="/"
-								element={<HomePage />}
-							/>
-							<Route
-								path="/products"
-								element={<AllProductsPage />}
-							/>
-							<Route
-								path="/products/:id/:variantId?"
-								element={<ProductPage />}
-							/>
-							<Route
-								path="/wishlist"
-								element={<WishList />}
-							/>
-							<Route
-								path="/cart"
-								element={<ShoppingCart />}
-							/>
-						</Routes>
+						<CartContextProvider>
+							<Routes>
+								<Route
+									path="/"
+									element={<HomePage />}
+								/>
+								<Route
+									path="/products"
+									element={<AllProductsPage />}
+								/>
+								<Route
+									path="/products/:id/:variantId?"
+									element={<ProductPage />}
+								/>
+								<Route
+									path="/wishlist"
+									element={<WishList />}
+								/>
+								<Route
+									path="/cart"
+									element={<ShoppingCart />}
+								/>
+							</Routes>
+						</CartContextProvider>
 					</VariantContextProvider>
 				</AllProductsContextProvider>
 				<Footer />

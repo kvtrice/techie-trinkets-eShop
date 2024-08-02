@@ -1,25 +1,36 @@
 import styles from "./ShoppingCart.module.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import CartItemsContainer from "../../components/CartItemsContainer/CartItemsContainer";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { CartContext } from "../../contexts/CartContextProvider";
+import {
+	clearCartItems,
+	getCartItems,
+	getCartTotalPrice,
+} from "../../utils/cart-utils";
+import { addProductQtyById } from "../../services/products-service";
 
 const ShoppingCart = () => {
-	const [cartItems, setCartItems] = useState([]);
+	const { cartItems, setCartItems } = useContext(CartContext);
 
 	useEffect(() => {
-		const storedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+		const storedCartItems = getCartItems(cartItems);
 		setCartItems(storedCartItems);
 	}, []);
 
-	const handleCartUpdate = newCartItems => {
-		setCartItems(newCartItems);
-	};
+	const handleClearCart = async () => {
+		// Array of promises for updating all product quantity's
+		const promises = cartItems.map(cartItem =>
+			addProductQtyById(cartItem.id, cartItem, cartItem.quantity)
+		);
 
-	const cartTotalPrice = cartItems.reduce((acc, item) => {
-		const subtotal = item.price * item.quantity;
-		acc += subtotal;
-		return acc;
-	}, 0);
+		// Await all promises
+		await Promise.all(promises);
+
+		setCartItems([]);
+		clearCartItems();
+		window.location.reload();
+	};
 
 	return (
 		<PageWrapper>
@@ -31,10 +42,31 @@ const ShoppingCart = () => {
 					<h1 className={styles.shoppingCart__heading}>
 						My Shopping Cart
 					</h1>
-					<CartItemsContainer onRemove={handleCartUpdate} />
-					<h2 className={styles.shoppingCart__total}>
-						Cart Total: ${cartTotalPrice}
-					</h2>
+					<CartItemsContainer />
+					<div className={styles.shoppingCart__footer}>
+						<h2 className={styles.shoppingCart__footer__total}>
+							Cart Total: ${getCartTotalPrice(cartItems)}
+						</h2>
+						<div
+							className={styles.shoppingCart__footer__cartActions}
+						>
+							<button
+								className={
+									styles.shoppingCart__footer__cartActions__clear
+								}
+								onClick={handleClearCart}
+							>
+								Clear Cart
+							</button>
+							<button
+								className={
+									styles.shoppingCart__footer__cartActions__checkout
+								}
+							>
+								Checkout
+							</button>
+						</div>
+					</div>
 				</>
 			)}
 		</PageWrapper>

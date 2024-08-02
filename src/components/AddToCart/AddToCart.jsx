@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./AddToCart.module.scss";
-import { updateProductQtyById } from "../../services/products-service";
+import { subtractProductQtyById } from "../../services/products-service";
+import { getCartItems, saveCartItems } from "../../utils/cart-utils";
 
 const AddToCart = ({
 	product,
@@ -62,8 +63,7 @@ const AddToCart = ({
 				quantity: Number(itemCount),
 			};
 
-			const currentCartItems =
-				JSON.parse(localStorage.getItem("cart")) || [];
+			const currentCartItems = getCartItems();
 
 			const existingItemIndex = currentCartItems.findIndex(
 				item => item.variantId === newCartItem.variantId
@@ -72,16 +72,16 @@ const AddToCart = ({
 			if (existingItemIndex !== -1) {
 				currentCartItems[existingItemIndex].quantity +=
 					newCartItem.quantity;
-				localStorage.setItem("cart", JSON.stringify(currentCartItems));
+				saveCartItems(currentCartItems);
 			} else {
 				const updatedCartItems = [...currentCartItems, newCartItem];
-				localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+				saveCartItems(updatedCartItems);
 			}
 
-			await updateProductQtyById(
+			await subtractProductQtyById(
 				product.id,
 				currentVariant,
-				0 - newCartItem.quantity
+				newCartItem.quantity
 			);
 
 			const newMaxQuantity = maxQuantity - newCartItem.quantity;
