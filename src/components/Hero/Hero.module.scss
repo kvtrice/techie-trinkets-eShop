@@ -39,17 +39,12 @@
 		}
 
 		&__btn {
+			@include m.primary-btn;
 			margin: 2rem;
 			font-size: large;
-			padding: 1rem;
-			border-radius: 10px;
-			border: v.$default-border;
-			cursor: pointer;
-			background-color: v.$primary-bg-color;
 			transition: v.$default-transition-duration;
 
 			&:hover {
-				@include m.popout-hover;
 				animation: backgroundColor 3s ease-in-out alternate infinite;
 			}
 		}

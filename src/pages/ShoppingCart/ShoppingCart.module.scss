@@ -31,19 +31,7 @@
 
 			&__clear,
 			&__checkout {
-				margin-top: 0.5rem;
-				cursor: pointer;
-				width: fit-content;
-				transition: v.$default-transition-duration;
-				padding: 0.8rem 1rem;
-				border: v.$default-border;
-				border-radius: 5px;
-				font-size: medium;
-
-				&:hover {
-					border: v.$default-border;
-					@include m.popout-hover;
-				}
+				@include m.primary-btn;
 			}
 
 			&__clear {
@@ -56,4 +44,14 @@
 			}
 		}
 	}
+}
+
+.checkoutContent {
+	text-align: center;
+	font-size: 22px;
+	padding-bottom: 1rem;
+}
+
+.continueShopping {
+	@include m.primary-btn;
 }

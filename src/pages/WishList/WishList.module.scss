@@ -19,7 +19,6 @@
 		justify-content: center;
 		align-items: center;
 
-
 		&__text {
 			font-size: 24px;
 			font-weight: 500;
@@ -27,17 +26,12 @@
 		}
 
 		&__btn {
+			@include m.primary-btn;
 			margin: 2rem;
 			font-size: large;
-			padding: 1rem;
-			border-radius: 10px;
-			border: v.$default-border;
-			cursor: pointer;
-			background-color: v.$palette-yellow;
 			transition: v.$default-transition-duration;
 
 			&:hover {
-				@include m.popout-hover;
 				animation: backgroundColor 3s ease-in-out alternate infinite;
 			}
 		}

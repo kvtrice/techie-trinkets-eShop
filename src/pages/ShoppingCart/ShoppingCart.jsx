@@ -1,7 +1,7 @@
 import styles from "./ShoppingCart.module.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import CartItemsContainer from "../../components/CartItemsContainer/CartItemsContainer";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContextProvider";
 import {
 	clearCartItems,
@@ -9,8 +9,10 @@ import {
 	getCartTotalPrice,
 } from "../../utils/cart-utils";
 import { addProductQtyById } from "../../services/products-service";
+import Modal from "../../components/Modal/Modal";
 
 const ShoppingCart = () => {
+	const [checkoutModal, setCheckoutModal] = useState(false);
 	const { cartItems, setCartItems } = useContext(CartContext);
 
 	useEffect(() => {
@@ -18,7 +20,7 @@ const ShoppingCart = () => {
 		setCartItems(storedCartItems);
 	}, []);
 
-	const handleClearCart = async () => {
+	const updateAllProductQtys = async () => {
 		// Array of promises for updating all product quantity's
 		const promises = cartItems.map(cartItem =>
 			addProductQtyById(cartItem.id, cartItem, cartItem.quantity)
@@ -26,10 +28,20 @@ const ShoppingCart = () => {
 
 		// Await all promises
 		await Promise.all(promises);
+	};
 
+	const handleClearCart = async () => {
+		await updateAllProductQtys();
 		setCartItems([]);
 		clearCartItems();
 		window.location.reload();
+	};
+
+	const handleCheckout = async () => {
+		await updateAllProductQtys();
+		setCartItems([]);
+		clearCartItems();
+		setCheckoutModal(true);
 	};
 
 	return (
@@ -62,12 +74,21 @@ const ShoppingCart = () => {
 								className={
 									styles.shoppingCart__footer__cartActions__checkout
 								}
+								onClick={handleCheckout}
 							>
 								Checkout
 							</button>
 						</div>
 					</div>
 				</>
+			)}
+			{checkoutModal && (
+				<Modal>
+					<p className={styles.checkoutContent}>Thank you for shopping at Techie Trinkets! 🎉</p>
+					<button className={styles.continueShopping} onClick={() => setCheckoutModal(false)}>
+						Keep Shopping
+					</button>
+				</Modal>
 			)}
 		</PageWrapper>
 	);

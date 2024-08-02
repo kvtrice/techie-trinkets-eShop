@@ -48,21 +48,7 @@
 	}
 
 	&__addToCart {
-		margin-top: 0.5rem;
-		cursor: pointer;
-		width: fit-content;
-		transition: v.$default-transition-duration;
-		padding: 0.8rem 1rem;
-		border: v.$default-border;
-		border-radius: 5px;
-		background-color: #518e3a;
-		color: white;
-		font-size: medium;
-
-		&:hover {
-			border: v.$default-border;
-			@include m.popout-hover;
-		}
+		@include m.primary-btn($background-color: #518e3a, $text-color: white);
 	}
 
 	&__error {
