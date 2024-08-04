@@ -40,19 +40,19 @@ const AddToCart = ({
 	const increment = e => {
 		e.preventDefault();
 		setError("");
-		const newItemCount = itemCount + 1;
+		const newItemCount = Number(itemCount) + 1;
 		setItemCount(newItemCount);
 	};
 
 	const decrement = e => {
-		setError("");
 		e.preventDefault();
-		const newItemCount = itemCount - 1;
+		setError("");
+		const newItemCount = Number(itemCount) - 1;
 		setItemCount(newItemCount);
 	};
 
 	const handleCart = async () => {
-		if (itemCount > 0) {
+		if (Number(itemCount) > 0 && Number(itemCount) <= maxQuantity) {
 			const newCartItem = {
 				id: product.id,
 				variantId: `${product.id}-${currentVariant.style}`,
@@ -90,6 +90,9 @@ const AddToCart = ({
 			setAddedToCart(true);
 		} else if (itemCount === 0 && maxQuantity !== 0) {
 			setError("Please add at least one item");
+		} else {
+			setItemCount(0);
+			setError(`Must enter a value less than or equal to ${maxQuantity}`);
 		}
 	};
 
@@ -102,7 +105,7 @@ const AddToCart = ({
 				<button
 					className={styles.form__decrease}
 					onClick={decrement}
-					disabled={itemCount === 0 || itemCount === ""}
+					disabled={Number(itemCount) <= 0 || itemCount === ""}
 				>
 					-
 				</button>
@@ -119,7 +122,7 @@ const AddToCart = ({
 				<button
 					className={styles.form__increase}
 					onClick={increment}
-					disabled={itemCount == maxQuantity}
+					disabled={Number(itemCount) >= maxQuantity}
 				>
 					+
 				</button>

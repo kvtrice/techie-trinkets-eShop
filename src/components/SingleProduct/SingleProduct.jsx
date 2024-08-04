@@ -4,6 +4,7 @@ import styles from "./SingleProduct.module.scss";
 import Favourite from "../Favourite/Favourite";
 import { findVariantByStyle } from "../../utils/variant-utils";
 import { subscribeToQuantityUpdates } from "../../services/products-service";
+import { Circles } from "react-loading-icons";
 
 const SingleProduct = ({ product, initialVariant }) => {
 	const [currentVariant, setCurrentVariant] = useState(initialVariant);
@@ -41,7 +42,7 @@ const SingleProduct = ({ product, initialVariant }) => {
 
 	return (
 		<>
-			{!product && <p>...Loading</p>}
+			{!product && <Circles />}
 			<div className={styles.product}>
 				<div className={styles.product__info}>
 					<div className={styles.product__info__images}>
