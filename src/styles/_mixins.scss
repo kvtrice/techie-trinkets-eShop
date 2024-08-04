@@ -49,3 +49,15 @@
 		@include popout-hover;
 	}
 }
+
+@mixin mobile-media-query {
+	@media only screen and (max-width: v.$mobile-breakpoint) {
+		@content;
+	}
+}
+
+@mixin tablet-media-query {
+	@media only screen and (max-width: v.$tablet-breakpoint) {
+		@content;
+	}
+}

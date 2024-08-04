@@ -22,3 +22,6 @@ $navbar-height: 40px;
 $default-page-height: calc(
 	100vh - $footer-height - 8rem - $navbar-height - 3rem
 );
+
+$mobile-breakpoint: 800px;
+$tablet-breakpoint: 1200px;
