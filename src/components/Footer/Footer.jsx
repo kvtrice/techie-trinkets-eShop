@@ -4,13 +4,19 @@ import { Link } from "react-router-dom";
 const Footer = () => {
 	const linkStyles = {
 		textDecoration: "none",
-		color: "black",
+		color: "#f9f5e3",
+		fontSize: "22px",
 	};
 
 	return (
 		<footer className={styles.footer}>
 			<div className={styles.footer__main}>
-				<h1 className={styles.footer__main__left}>Techie Trinkets</h1>
+				<Link to="/">
+					<img
+						className={styles.footer__main__left}
+						src="title.png"
+					/>
+				</Link>
 				<div className={styles.footer__main__right}>
 					<Link
 						className={styles.link}

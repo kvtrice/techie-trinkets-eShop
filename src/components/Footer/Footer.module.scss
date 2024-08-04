@@ -3,24 +3,31 @@
 .footer {
 	height: v.$footer-height;
 	border-top: v.$default-border;
-	padding: 4rem 2rem;
-	background-color: v.$palette-pink;
+	padding: 7rem 4rem 2rem 4rem;
+	background-color: v.$footer-bg-color;
+	color: v.$primary-bg-color;
 
 	&__main {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 
+		&__left {
+			height: 60px;
+		}
+
 		&__right {
 			font-size: large;
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
-			gap: 0.2rem;
+			gap: 1rem;
+			color: v.$primary-bg-color;
 		}
 	}
 
 	&__copyright {
-		margin-top: 4rem;
+		text-align: center;
+		margin-top: 6rem;
 	}
 }

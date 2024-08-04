@@ -6,18 +6,12 @@ $primary-bg-color: #f9f5e3;
 
 $palette-yellow: #f0deaa;
 $palette-pink: #eaa39e;
-$palette-blue: #6999a5;
-
-$palette-gradient: linear-gradient(
-	to bottom right,
-	$palette-yellow 0%,
-	$palette-pink 100%
-);
+$footer-bg-color: #01050c;
 
 $default-border: 1px solid #000000;
 $default-transition-duration: 400ms;
 
-$footer-height: 200px;
+$footer-height: 300px;
 $navbar-height: 40px;
 $default-page-height: calc(
 	100vh - $footer-height - 8rem - $navbar-height - 3rem
