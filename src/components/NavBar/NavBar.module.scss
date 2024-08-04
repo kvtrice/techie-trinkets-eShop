@@ -13,13 +13,11 @@
 		width: 40px;
 		height: 40px;
 		overflow: hidden;
-		border: v.$default-border;
-		border-radius: 5px;
 		transition: v.$default-transition-duration;
 		cursor: pointer;
 
 		&:hover {
-			@include m.popout-hover;
+			transform: scale(1.2);
 		}
 	}
 
@@ -59,6 +57,32 @@
 			&:hover {
 				transform: scale(1.2);
 				fill: v.$palette-pink;
+			}
+		}
+	}
+}
+
+.heroNav {
+	color: v.$primary-bg-color;
+	border-bottom: none;
+
+	.nav {
+		&__home,
+		&__products {
+			&:hover {
+				border: 1px solid v.$primary-bg-color;
+				box-shadow: 5px 5px 0px v.$primary-bg-color;
+			}
+		}
+
+		&__cart {
+			&__icon {
+				fill: v.$primary-bg-color;
+
+				&:hover {
+					transform: scale(1.2);
+					fill: v.$palette-pink;
+				}
 			}
 		}
 	}

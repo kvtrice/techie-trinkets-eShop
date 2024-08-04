@@ -10,6 +10,7 @@ import {
 } from "../../utils/cart-utils";
 import { addProductQtyById } from "../../services/products-service";
 import Modal from "../../components/Modal/Modal";
+import NavBar from "../../components/NavBar/NavBar";
 
 const ShoppingCart = () => {
 	const [checkoutModal, setCheckoutModal] = useState(false);
@@ -45,52 +46,64 @@ const ShoppingCart = () => {
 	};
 
 	return (
-		<PageWrapper>
-			{cartItems.length === 0 && (
-				<p className={styles.shoppingCart__noItems}>No items in cart</p>
-			)}
-			{cartItems.length > 0 && (
-				<>
-					<h1 className={styles.shoppingCart__heading}>
-						My Shopping Cart
-					</h1>
-					<CartItemsContainer />
-					<div className={styles.shoppingCart__footer}>
-						<h2 className={styles.shoppingCart__footer__total}>
-							Cart Total: ${getCartTotalPrice(cartItems)}
-						</h2>
-						<div
-							className={styles.shoppingCart__footer__cartActions}
-						>
-							<button
+		<>
+			<NavBar />
+			<PageWrapper>
+				{cartItems.length === 0 && (
+					<p className={styles.shoppingCart__noItems}>
+						No items in cart
+					</p>
+				)}
+				{cartItems.length > 0 && (
+					<>
+						<h1 className={styles.shoppingCart__heading}>
+							My Shopping Cart
+						</h1>
+						<CartItemsContainer />
+						<div className={styles.shoppingCart__footer}>
+							<h2 className={styles.shoppingCart__footer__total}>
+								Cart Total: ${getCartTotalPrice(cartItems)}
+							</h2>
+							<div
 								className={
-									styles.shoppingCart__footer__cartActions__clear
+									styles.shoppingCart__footer__cartActions
 								}
-								onClick={handleClearCart}
 							>
-								Clear Cart
-							</button>
-							<button
-								className={
-									styles.shoppingCart__footer__cartActions__checkout
-								}
-								onClick={handleCheckout}
-							>
-								Checkout
-							</button>
+								<button
+									className={
+										styles.shoppingCart__footer__cartActions__clear
+									}
+									onClick={handleClearCart}
+								>
+									Clear Cart
+								</button>
+								<button
+									className={
+										styles.shoppingCart__footer__cartActions__checkout
+									}
+									onClick={handleCheckout}
+								>
+									Checkout
+								</button>
+							</div>
 						</div>
-					</div>
-				</>
-			)}
-			{checkoutModal && (
-				<Modal>
-					<p className={styles.checkoutContent}>Thank you for shopping at Techie Trinkets! 🎉</p>
-					<button className={styles.continueShopping} onClick={() => setCheckoutModal(false)}>
-						Keep Shopping
-					</button>
-				</Modal>
-			)}
-		</PageWrapper>
+					</>
+				)}
+				{checkoutModal && (
+					<Modal>
+						<p className={styles.checkoutContent}>
+							Thank you for shopping at Techie Trinkets! 🎉
+						</p>
+						<button
+							className={styles.continueShopping}
+							onClick={() => setCheckoutModal(false)}
+						>
+							Keep Shopping
+						</button>
+					</Modal>
+				)}
+			</PageWrapper>
+		</>
 	);
 };
 export default ShoppingCart;

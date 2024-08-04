@@ -5,6 +5,7 @@ import { getProductById } from "../../services/products-service";
 import SingleProduct from "../../components/SingleProduct/SingleProduct";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import { findVariantByStyle } from "../../utils/variant-utils";
+import NavBar from "../../components/NavBar/NavBar";
 
 const ProductPage = () => {
 	const { id, variantId } = useParams();
@@ -28,17 +29,20 @@ const ProductPage = () => {
 	}, [id]);
 
 	return (
-		<PageWrapper>
-			<div className={styles.productPage}>
-				{product && (
-					<SingleProduct
-						product={product}
-						setProduct={setProduct}
-						initialVariant={initialVariant}
-					/>
-				)}
-			</div>
-		</PageWrapper>
+		<>
+			<NavBar />
+			<PageWrapper>
+				<div className={styles.productPage}>
+					{product && (
+						<SingleProduct
+							product={product}
+							setProduct={setProduct}
+							initialVariant={initialVariant}
+						/>
+					)}
+				</div>
+			</PageWrapper>
+		</>
 	);
 };
 

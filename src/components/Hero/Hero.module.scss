@@ -2,21 +2,19 @@
 @use "../../styles/mixins" as m;
 
 .hero {
-	height: 50vh;
+	height: 60vh;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 	border-bottom: v.$default-border;
 
-	&__left {
-		background-color: v.$palette-blue;
+	&__main {
 		width: 100%;
-		height: 100%;
-		border-right: v.$default-border;
+		height: 80%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 
 		&__img {
 			width: 100%;
@@ -42,26 +40,22 @@
 			@include m.primary-btn;
 			margin: 2rem;
 			font-size: large;
-			transition: v.$default-transition-duration;
 
 			&:hover {
+				box-shadow: 5px 5px 0px v.$primary-bg-color;
 				animation: backgroundColor 3s ease-in-out alternate infinite;
 			}
 		}
 	}
+}
 
-	&__right {
-		height: 100%;
-		width: 100%;
-		overflow: hidden;
-		background-color: rgb(49, 48, 48);
-
-		&__img {
-			object-fit: cover;
-			height: 100%;
-			width: 100%;
-		}
-	}
+.heroContainer {
+	width: 100%;
+	height: 100%;
+	background-image: url("src/assets/hero.jpeg");
+	background-size: cover;
+	background-position: center center;
+	box-shadow: inset 0 0 0 1000px #0000007a;
 }
 
 @include m.color-animation;

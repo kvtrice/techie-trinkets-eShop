@@ -2,8 +2,8 @@ import styles from "./NavBar.module.scss";
 import { NavLink } from "react-router-dom";
 import { BsCartFill } from "react-icons/bs";
 
-const NavBar = () => {
-	const navStyles = ({ isActive }) =>
+const NavBar = ({ heroNav = false }) => {
+	const navButtonStyles = ({ isActive }) =>
 		isActive
 			? {
 					color: "#000000",
@@ -16,8 +16,21 @@ const NavBar = () => {
 					textDecoration: "none",
 			  };
 
+	const heroNavButtonStyles = ({ isActive }) =>
+		isActive
+			? {
+					color: "#000000",
+					textDecoration: "none",
+					border: "1px solid #000000",
+					backgroundColor: "#f0deaa",
+			  }
+			: {
+					color: "#ffffff",
+					textDecoration: "none",
+			  };
+
 	return (
-		<div className={styles.nav}>
+		<div className={`${styles.nav} ${heroNav ? styles.heroNav : ""}`}>
 			<NavLink to="/">
 				<div className={styles.nav__logoContainer}>
 					<img
@@ -29,21 +42,21 @@ const NavBar = () => {
 			</NavLink>
 			<div className={styles.nav__mainLinks}>
 				<NavLink
-					style={navStyles}
+					style={heroNav ? heroNavButtonStyles : navButtonStyles}
 					to="/"
 					className={styles.nav__home}
 				>
 					Home
 				</NavLink>
 				<NavLink
-					style={navStyles}
+					style={heroNav ? heroNavButtonStyles : navButtonStyles}
 					to="/products"
 					className={styles.nav__products}
 				>
 					All Products
 				</NavLink>
 				<NavLink
-					style={navStyles}
+					style={heroNav ? heroNavButtonStyles : navButtonStyles}
 					to="/wishlist"
 					className={styles.nav__products}
 				>
