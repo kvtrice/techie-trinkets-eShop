@@ -5,7 +5,7 @@ import { generateVariantId } from "../utils/variant-utils";
 export const VariantContext = createContext();
 
 const VariantContextProvider = ({ children }) => {
-	const [favourites, setFavourites] = useState();
+	const [favourites, setFavourites] = useState([]);
 	const { products } = useContext(AllProductsContext);
 
 	useEffect(() => {

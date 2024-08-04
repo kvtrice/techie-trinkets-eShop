@@ -32,3 +32,30 @@ export const generateFakeProduct = (
 
 	return fakeProduct;
 };
+
+export const generateFakeFavouritedVariant = (
+	favBool,
+	productId,
+	price,
+	productName,
+	qty,
+	style
+) => {
+	const fakeFavouritedVariant = {
+		favourite: favBool,
+		featured: false,
+		id: `${productId}-${style}`,
+		image: "testImage.jpeg",
+		product: {
+			description: "Some description",
+			id: productId,
+			price: price,
+			name: productName,
+			variants: [],
+		},
+		quantity: qty,
+		style: style,
+	};
+
+	return fakeFavouritedVariant;
+};
