@@ -28,21 +28,32 @@ const ShoppingCart = () => {
 		);
 
 		// Await all promises
-		await Promise.all(promises);
+		return await Promise.all(promises);
 	};
 
 	const handleClearCart = async () => {
-		await updateAllProductQtys();
-		setCartItems([]);
-		clearCartItems();
-		window.location.reload();
+		console.log(cartItems);
+
+		try {
+			updateAllProductQtys(cartItems);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setCartItems([]);
+			clearCartItems();
+		}
 	};
 
 	const handleCheckout = async () => {
-		await updateAllProductQtys();
-		setCartItems([]);
-		clearCartItems();
-		setCheckoutModal(true);
+		try {
+			updateAllProductQtys(cartItems);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setCartItems([]);
+			clearCartItems();
+			setCheckoutModal(true);
+		}
 	};
 
 	return (
