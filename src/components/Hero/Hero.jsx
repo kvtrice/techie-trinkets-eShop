@@ -10,7 +10,7 @@ const Hero = () => {
 				<div className={styles.hero__main}>
 					<img
 						className={styles.hero__main__img}
-						src="src/assets/title.png"
+						src="title.png"
 						alt="Techie Trinkets"
 					/>
 					<p className={styles.hero__main__text}>
